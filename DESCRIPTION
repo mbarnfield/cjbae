@@ -1,0 +1,10 @@
+Package: cjbae
+Title: Bayesian inference for conjoint experiments
+Version: 0.0.0.9000
+Authors@R: person("Matthew", "Barnfield", email = "m.barnfield@qmul.ac.uk", role = c("aut", "cre"))
+Depends: R (>= 3.5.2), tidyverse (>= 1.2.1)
+Suggests: cregg
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1.9000

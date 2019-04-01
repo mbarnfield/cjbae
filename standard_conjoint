@@ -1,0 +1,26 @@
+# Analyse using cregg ----------
+
+# Write formula
+cregg_f <- ChosenImmigrant ~ Gender + Education +
+  LanguageSkills + CountryOfOrigin + Job + JobExperience +
+  JobPlans + ReasonForApplication + PriorEntry
+
+# Calculate AMCEs
+cregg_amce <- cj(data = immigration,
+               formula = cregg_f,
+               id = ~ CaseID,
+               estimate = "amce")
+
+# Calculate MMs
+cregg_mm <- cj(data = immigration,
+              formula = cregg_f,
+              id = ~ CaseID,
+              estimate = "mm",
+              h0 = 0.5)
+
+# Plot amces
+plot(cregg_amce, vline = 0.0)
+
+# Plot MMs
+plot(cregg_mm, vline = 0.5)
+
