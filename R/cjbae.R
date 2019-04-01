@@ -9,9 +9,6 @@
 
 cjbaemce <- function(data, formula, id) {
 
-  # Load tidyverse for magrittr and dplyr
-  library(tidyverse)
-
   # Find id variable in data
   id_enq <- enquo(id)
 
