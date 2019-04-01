@@ -1,7 +1,7 @@
 #' @rdname cjbae
 #' @title Bayesian inference for conjoint experiments
 #' @export
-#' @import tidyverse
+#' @import tidyverse brms
 
 # cjbaemce()
 # Function takes data, (standard) formula and id, converts
