@@ -1,0 +1,11 @@
+---
+title: "Conjoint analysis: a Bayesian approach"
+author: "Matthew Barnfield, Jack Bailey"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This manuscript will be very interesting.
