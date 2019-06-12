@@ -1,6 +1,6 @@
 ---
 title: "Bayesian conjoint analysis"
-author: "Matthew Barnfield"
+author: "Matthew Barnfield and Jack Bailey"
 output:
   github_document: default
   md_document:
