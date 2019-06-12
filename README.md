@@ -1,6 +1,6 @@
 Bayesian conjoint analysis
 ================
-Matthew Barnfield
+Matthew Barnfield and Jack Bailey
 
 `cjbae` provides functions for Bayesian analysis of conjoint experimental data. These functions use [`brms`](https://github.com/paul-buerkner/brms) and [`emmeans`](https://github.com/rvlenth/emmeans) to estimate Bayesian average marginal component effects (AMCEs) and marginal means (MMs). For explanations of these quantities of interest in the standard frequentist approach to conjoint analysis, see [Hainmueller, Hopkins and Yamamoto (2014)](https://www.cambridge.org/core/journals/political-analysis/article/causal-inference-in-conjoint-analysis-understanding-multidimensional-choices-via-stated-preference-experiments/414DA03BAA2ACE060FFE005F53EFF8C8) and [Leeper, Hobolt and Tilley (2018)](https://s3.us-east-2.amazonaws.com/tjl-sharing/assets/MeasuringSubgroupPreferences.pdf).
 
