@@ -36,7 +36,7 @@ cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
     data.frame() %>%
     dplyr::select(-"b_Intercept") %>%
     reshape2::melt() %>%
-    mutate(variable = gsub(".*_",
+    dplyr::mutate(variable = gsub(".*_",
                            "",
                            variable)) %>%
     rename(estimate = value) %>%
