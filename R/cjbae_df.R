@@ -9,6 +9,7 @@
 #' @details \code{cjbae_df()} takes an AMCE brmsfit object and creates a dataframe of AMCE parameter estimates. The other arguments are needed in addition to the brmsfit argument in order to create the feature variable in the output.
 #' @export
 #' @import tidyverse magrittr reshape2 stats
+#' @importFrom magrittr "%>%"
 #' @examples
 #' #' #' #load example dataset from {cregg} (Leeper 2019)
 #' library(cregg)

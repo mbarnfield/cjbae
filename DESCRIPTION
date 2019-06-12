@@ -2,7 +2,7 @@ Package: cjbae
 Title: Bayesian inference for conjoint experiments
 Version: 0.0.0.9000
 Authors@R: c(person("Matthew", "Barnfield", email = "m.barnfield@qmul.ac.uk", role = c("aut", "cre")), person("Jack", "Bailey", email = "jack.bailey-2@postgrad.manchester.ac.uk", role = c("aut"))) 
-Depends: R (>= 3.5.2)
+Depends: R (>= 3.5.2), magrittr
 Imports: tidyverse, brms, emmeans, tidybayes, ggplot2, magrittr, ggridges, reshape2, stats
 Suggests: cregg
 License: MIT + file LICENSE
