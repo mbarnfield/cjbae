@@ -45,11 +45,6 @@ amce_bae <- function(data,
                      cores = 2,
                      refresh = 10) {
 
-  estimate <- match.arg(estimate)
-
-  # check estimate is amce or mm
-  if (!estimate %in% c("amce", "mm")) {
-    stop("Estimate must be either amce or mm")}
 
   ## convert formula --------
 
