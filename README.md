@@ -8,7 +8,8 @@
 
 Alternatively, [`cjbae()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjbae.R) is a one-stop shop for both AMCE and MM calculation. Specifying `estimate = "mm"` and `save_amce = TRUE` will generate a saved AMCE `brmsfit` object and a tidy dataframe of MMs in your R environment. The function [`cjbae_df()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjbae_df.R) can then be used on the `brmsfit` object, once it is loaded into your environment, to create a tidy dataframe of AMCEs. 
 
-Both MMs and AMCEs can be passed to [`cjbae_plot()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjbae_plot.R) to plot the distributions of parameter estimates in a way that is more-or-less visually consistent with [standard approaches to plotting conjoint estimates](https://github.com/leeper/cregg/blob/master/R/plot_cj_amce.R).    
+Both MMs and AMCEs can be passed to [`cjbae_plot()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjbae_plot.R) to plot the distributions of parameter estimates in a way that is more-or-less visually consistent with [standard approaches to plotting conjoint estimates](https://github.com/leeper/cregg/blob/master/R/plot_cj_amce.R). This function is currently not particularly flexible, and can be easily replicated in a more flexible way with a standard `ggplot` approach.     
+
 The name `cjbae` is obviously a sort of 'conjoint bayesian' portmanteau, but it conveniently also reminds us that 'conjoint analysis is bae'.
 
 To install this developmental version of the package:

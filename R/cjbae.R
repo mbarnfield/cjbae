@@ -15,7 +15,7 @@
 #' @return A dataframe of either AMCE estimates or marginal means. These take the form of samples from the posterior probability distribution and can be plotted as distributions, rather than point estimates.
 #' @details \code{cjbae()} is a generic Bayesian estimation function for the two key quantities of interest in conjoint experiments (AMCEs and marginal means), and is essentially a wrapper for [`brms`](https://github.com/paul-buerkner/brms) and [`emmeans`](https://github.com/rvlenth/emmeans), and borrows extensively from [`cregg`](https://github.com/leeper/cregg), R's foremost conjoint analysis package.
 #' @export
-#' @import tidyverse brms
+#' @import tidyverse brms emmeans
 #' @examples
 #' #' #load example dataset from {cregg} (Leeper 2019)
 #' library(cregg)

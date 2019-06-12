@@ -2,5 +2,7 @@
 
 export(cjbae)
 export(cjbae_formula)
+export(mm_bae)
 import(brms)
+import(emmeans)
 import(tidyverse)
