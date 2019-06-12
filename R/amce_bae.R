@@ -1,3 +1,39 @@
+#' @rdname amce_bae
+#' @title Bayesian AMCEs for conjoint analysis
+#' @description Calculate Bayesian AMCEs for conjoint experiments
+#' @param data A tidy conjoint dataset
+#' @param formula A standard formula of the form outcome ~ feature 1 + feature 2 ... + feature n
+#' @param id Respondent ID variable
+#' @param prior Priors for brms. Priors required for beta, intercept, sd and sigma. For clarification see examples below.
+#' @param save_amce Logical vector telling R whether or not to save the AMCE brmsfit as an object in your working directory. If you want both AMCE and MM estimates, set this to TRUE then load the brmsfit object into your environment and pass it through `mm_bae()`. Alternatively, use `cjbae()`. Defaults to TRUE.
+#' @param save_name The name you would like the AMCE brmsfit saved as. Defaults to 'baerms'.
+#' @param iter The number of iterations in the brms model. Essentially, the number of times it will sample from the posterior probability distribution. Defaults to 2000.
+#' @param chains The number of chains in the brms model. Defaults to 2.
+#' @param cores The number of cores used in the brms model. Defaults to 2.
+#' @param refresh The number of refreshes. Defaults to 10.
+#' @return A dataframe of AMCEs. These take the form of samples from the posterior probability distribution and can be plotted as distributions, rather than point estimates.
+#' @details \code{amce_bae()} is a Bayesian estimation function for a key quantity of interest in conjoint analysis (AMCEs), and is essentially a wrapper for [`brms`](https://github.com/paul-buerkner/brms), and borrows extensively from [`cregg`](https://github.com/leeper/cregg), R's foremost conjoint analysis package. The calculation in this function is computationally expensive, but exactly how long it takes is highly contingent on the size of the dataset.
+#' @export
+#' @import tidyverse brms magrittr tidybayes reshape2 stats
+#' @examples
+#' #' #load example dataset from {cregg} (Leeper 2019)
+#' library(cregg)
+#' data(taxes)
+#' # formula
+#' f <- chose_plan ~ taxrate1 + taxrate2 + taxrate3 + taxrate4 + taxrate5 + taxrate6 + taxrev
+#' # prior - minimally informative
+#' prior <- c(set_prior("normal(0, .2)", class = "Intercept"),
+#' set_prior("normal(0, .2)", class = "b"),
+#' set_prior("exponential(10)", class = "sd"),
+#' set_prior("exponential(10)", class = "sigma"))
+#' # run amce function with save specified, saves brmsfit to working directory - this will take a while
+#' amce_bae(data = taxes, formula = f, id = ID, prior = prior, save_amce = TRUE)
+#' # run mm function on the saved output
+#' readRDS(baerms)
+#' mm <- mm_bae(baerms, f, ID)
+#' # plot MMs
+#' cjbae_plot(mm, "ridge", "mm")
+
 amce_bae <- function(data,
                      formula,
                      id,

@@ -10,7 +10,7 @@ Alternatively, [`cjbae()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjb
 
 Both MMs and AMCEs can be passed to [`cjbae_plot()`](https://github.com/mbarnfield/cjbae/blob/master/R/cjbae_plot.R) to plot the distributions of parameter estimates in a way that is more-or-less visually consistent with [standard approaches to plotting conjoint estimates](https://github.com/leeper/cregg/blob/master/R/plot_cj_amce.R). This function is currently not particularly flexible, and can be easily replicated in a more flexible way with a standard `ggplot` approach.     
 
-The name `cjbae` is obviously a sort of 'conjoint bayesian' portmanteau, but it conveniently also reminds us that 'conjoint analysis is bae'.
+The name `cjbae` is obviously a sort of 'conjoint bayesian' portmanteau, but it conveniently also reminds us that **'conjoint analysis is bae'**.
 
 To install this developmental version of the package:
 

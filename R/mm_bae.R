@@ -4,10 +4,10 @@
 #' @param baemces An AMCE object of class `brmsfit`.
 #' @param formula A standard formula of the form outcome ~ feature 1 + feature 2 ... + feature n
 #' @param id Respondent ID variable
-#' @return A dataframe of arginal means. These take the form of samples from the posterior probability distribution and can be plotted as distributions, rather than point estimates.
-#' @details \code{mm_bae()} is a generic Bayesian estimation function for a key quantity of interest in conjoint analysis (marginal means), and is essentially a wrapper for [`emmeans`](https://github.com/rvlenth/emmeans), and borrows extensively from [`cregg`](https://github.com/leeper/cregg), R's foremost conjoint analysis package. The calculation in this function is computationally expensive. Attempting to calculate MMs naively for an entire AMCE brmsfit object will often crash R, so this function uses a loop to calculate each feature one-by-one. The results of this process are equivalent. Obviously this takes time, but exactly how long is highly contingent on the number of predictors in the model.
+#' @return A dataframe of marginal means. These take the form of samples from the posterior probability distribution and can be plotted as distributions, rather than point estimates.
+#' @details \code{mm_bae()} is a Bayesian estimation function for a key quantity of interest in conjoint analysis (marginal means), and is essentially a wrapper for [`emmeans`](https://github.com/rvlenth/emmeans), and borrows extensively from [`cregg`](https://github.com/leeper/cregg), R's foremost conjoint analysis package. The calculation in this function is computationally expensive. Attempting to calculate MMs naively for an entire AMCE brmsfit object will often crash R, so this function uses a loop to calculate each feature one-by-one. The results of this process are equivalent. Obviously this takes time, but exactly how long is highly contingent on the number of predictors in the model.
 #' @export
-#' @import tidyverse brms emmeans
+#' @import tidyverse brms emmeans magrittr tidybayes stats
 #' @examples
 #' #' #load example dataset from {cregg} (Leeper 2019)
 #' library(cregg)
