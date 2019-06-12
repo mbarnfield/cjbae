@@ -91,7 +91,7 @@ amce_bae <- function(data,
 
     baemces <- posterior_samples(baemces, "^b") %>%
       data.frame() %>%
-      select(-"b_Intercept") %>%
+      dplyr::select(-"b_Intercept") %>%
       reshape2::melt() %>%
       mutate(variable = gsub(".*_",
                              "",
