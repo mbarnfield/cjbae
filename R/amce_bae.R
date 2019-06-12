@@ -93,11 +93,11 @@ amce_bae <- function(data,
       data.frame() %>%
       dplyr::select(-"b_Intercept") %>%
       reshape2::melt() %>%
-      mutate(variable = gsub(".*_",
+      dplyr::mutate(variable = gsub(".*_",
                              "",
                              variable)) %>%
-      rename(estimate = value) %>%
-      rename(level = variable)
+      dplyr::rename(estimate = value) %>%
+      dplyr::rename(level = variable)
 
     # create feature variable - first have to work out no. of unique levels per feature
     features_df <- dplyr::select(data, one_of(predictors))
@@ -128,13 +128,13 @@ amce_bae <- function(data,
 
     baemces <- posterior_samples(baemces, "^b") %>%
       data.frame() %>%
-      select(-"b_Intercept") %>%
+      dplyr::select(-"b_Intercept") %>%
       reshape2::melt() %>%
-      mutate(variable = gsub(".*_",
+      dplyr::mutate(variable = gsub(".*_",
                              "",
                              variable)) %>%
-      rename(estimate = value) %>%
-      rename(level = variable)
+      dplyr::rename(estimate = value) %>%
+      dplyr::rename(level = variable)
 
     # create feature variable - first have to work out no. of unique levels per feature
     features_df <- dplyr::select(data, one_of(predictors))
