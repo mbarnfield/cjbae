@@ -2,7 +2,7 @@
 % Please edit documentation in R/cjbae_formula.R
 \name{cjbae_formula}
 \alias{cjbae_formula}
-\title{Conjoint formula conversion for bayesian analysis}
+\title{Conjoint formula conversion for Bayesian analysis}
 \usage{
 cjbae_formula(data, formula, id)
 }
@@ -14,10 +14,10 @@ cjbae_formula(data, formula, id)
 \item{id}{A variable, within data, containing respondent IDs.}
 }
 \description{
-Convert standard tidy conjoint function (data, formula, id) input into the input for a `brmsformula()`.
+Convert standard tidy conjoint function (data, formula, id) input into the input for a `brms` model.
 }
 \details{
-\code{cjbae_formula} takes three arguments: `data`, `formula`, and `id`, and uses these to specify a formula to be passed to `brmsformula()`, to facilitate bayesian analysis of conjoint experiments otherwise analysed using `cregg`.
+\code{cjbae_formula} takes three arguments: `data`, `formula`, and `id`, and uses these to specify a formula to be passed to `brm()`, to facilitate bayesian analysis of conjoint experiments otherwise analysed using `cregg`. This function is integrated into other `cjbae()` functions and only necessary in isolation if you are directly using `brms()`.
 }
 \examples{
 #load example data from cregg
@@ -28,8 +28,8 @@ cjbae_formula(data = immigration, formula = ChosenImmigrant ~ Gender + Job, id =
 #or matched positionally
 cjbae_formula(immigration, ChosenImmigrant ~ Gender + Job, CaseID)
 #can pre-specify longer input formula
-f1 <- ChosenImmigrant ~ Gender + Education + LanguageSkills + 
-CountryOfOrigin + Job + JobExperience + JobPlans + 
+f1 <- ChosenImmigrant ~ Gender + Education + LanguageSkills +
+CountryOfOrigin + Job + JobExperience + JobPlans +
 ReasonForApplication + PriorEntry
 cjbae_formula(immigration, f1, CaseID)
 }

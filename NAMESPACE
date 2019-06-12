@@ -2,6 +2,7 @@
 
 export(amce_bae)
 export(cjbae)
+export(cjbae_df)
 export(cjbae_formula)
 export(cjbae_plot)
 export(mm_bae)

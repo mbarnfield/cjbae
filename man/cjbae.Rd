@@ -56,5 +56,5 @@ set_prior("exponential(10)", class = "sigma"))
 bae <- cjbae(data = taxes, formula = f, id = ID, estimate = "mm", prior = prior, save_amce = TRUE)
 # AMCE brmsfit object can be loaded from working directory using readRDS()
 # then converted into proper cjbae output
-cjbae_df(baerms)
+cjbae_df(taxes, f, baerms)
 }
