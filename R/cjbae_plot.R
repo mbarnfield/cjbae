@@ -38,7 +38,7 @@ cjbae_plot <- function(data,
 
   # amce ridge plot
   if (visual == "ridge" & estimate == "amce") {
-    ggplot2::ggplot(x,
+    ggplot2::ggplot(data,
                     aes(x = estimate,
                         y = level,
                         fill = feature,
@@ -54,7 +54,7 @@ cjbae_plot <- function(data,
 
   # mm ridge plot
   else if (visual == "ridge" & estimate == "mm") {
-    ggplot2::ggplot(x,
+    ggplot2::ggplot(data,
                     aes(x = estimate,
                         y = level,
                         fill = feature,
@@ -70,7 +70,7 @@ cjbae_plot <- function(data,
 
   # amce halfeye plot
   else if (visual == "halfeye" & estimate == "amce") {
-    ggplot2::ggplot(x,
+    ggplot2::ggplot(data,
                     aes(x = estimate,
                         y = level,
                         fill = feature)) +
@@ -85,7 +85,7 @@ cjbae_plot <- function(data,
 
   # mm ridge plot
   else if (visual == "halfeye" & estimate == "mm") {
-    ggplot2::ggplot(x,
+    ggplot2::ggplot(data,
                     aes(x = estimate,
                         y = level,
                         fill = feature)) +

@@ -40,7 +40,7 @@ mm_bae <- function(baemces,
   # loop over each predictor and calculate its MM, store into output separately
   # much quicker than applying emmeans to whole object and doesn't crash this way
   for (i in seq_along(features)) {
-    marginal_mean[[i]] <- emmeans::emmeans(baemce, features[i]) %>%
+    marginal_mean[[i]] <- emmeans::emmeans(baemces, features[i]) %>%
       tidybayes::gather_emmeans_draws() %>% # tidy tibble for plotting
       dplyr::mutate(
         feature = features[i] # generate feature variable for grouping
