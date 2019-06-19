@@ -47,7 +47,7 @@ cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
   predictors <- all.vars(stats::update(formula, 0 ~ .))
 
   # create feature variable - first have to work out no. of unique levels per feature
-  features_df <- dplyr::select(data, one_of(predictors))
+  features_df <- dplyr::select(data, dplyr::one_of(predictors))
   lengths <- vector("double", ncol(features_df))
   for (i in seq_along(features_df)) {
     lengths[[i]] <- length(unique(features_df[[i]]))
