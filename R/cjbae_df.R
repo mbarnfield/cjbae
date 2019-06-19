@@ -33,7 +33,7 @@
 
 cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
 
-  baemces <- posterior_samples(baerms, "^b") %>%
+  baemces <- posterior_samples(brmsfit, "^b") %>%
     data.frame() %>%
     dplyr::select(-"b_Intercept") %>%
     reshape2::melt() %>%
