@@ -106,8 +106,8 @@ cjbae <-
         mutate(variable = gsub(".*_",
                                "",
                                variable)) %>%
-        rename(estimate = value) %>%
-        rename(level = variable)
+        dplyr::rename(estimate = value) %>%
+        dplyr::rename(level = variable)
 
       # create feature variable - first have to work out no. of unique levels per feature
       features_df <- dplyr::select(data, one_of(predictors))
@@ -143,8 +143,8 @@ cjbae <-
         mutate(variable = gsub(".*_",
                                "",
                                variable)) %>%
-        rename(estimate = value) %>%
-        rename(level = variable)
+        dplyr::rename(estimate = value) %>%
+        dplyr::rename(level = variable)
 
       # create feature variable - first have to work out no. of unique levels per feature
       features_df <- dplyr::select(data, one_of(predictors))

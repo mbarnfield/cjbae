@@ -40,8 +40,8 @@ cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
     dplyr::mutate(variable = gsub(".*_",
                            "",
                            variable)) %>%
-    rename(estimate = value) %>%
-    rename(level = variable)
+    dplyr::rename(estimate = value) %>%
+    dplyr::rename(level = variable)
 
   # predictors var to help generate feature var
   predictors <- all.vars(stats::update(formula, 0 ~ .))
