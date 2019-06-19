@@ -4,13 +4,13 @@
 \alias{cjbae_plot}
 \title{Simple plotting of cjbae outputs.}
 \usage{
-cjbae_plot(data, visual = c("ridge", "halfeye"), estimate = c("amce",
-  "mm"))
+cjbae_plot(data, visual = c("ridge", "halfeye", "point interval"),
+  estimate = c("amce", "mm"))
 }
 \arguments{
 \item{data}{A tidy dataframe of either AMCEs or MMs.}
 
-\item{visual}{Currently either "ridge" or "halfeye" - two different takes on a distribution plot.}
+\item{visual}{Currently either "ridge" or "halfeye" - two different takes on a distribution plot. ADDED "point interval" which uses `stat_pointintervalh()` from `tidybayes`.`}
 
 \item{estimate}{Either "mm" or "amce".}
 }

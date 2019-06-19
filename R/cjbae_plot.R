@@ -2,7 +2,7 @@
 #' @title Simple plotting of cjbae outputs.
 #' @description Visualise Bayesian marginal means and AMCEs
 #' @param data A tidy dataframe of either AMCEs or MMs.
-#' @param visual Currently either "ridge" or "halfeye" - two different takes on a distribution plot.
+#' @param visual Currently either "ridge" or "halfeye" - two different takes on a distribution plot. ADDED "point interval" which uses `stat_pointintervalh()` from `tidybayes`.`
 #' @param estimate Either "mm" or "amce".
 #' @return A plot of parameter distributions.
 #' @details \code{cjbae_plot()} plots AMCEs or marginal means of feature-levels as distributions, colour-coded by feature.
@@ -33,8 +33,9 @@
 
 
 cjbae_plot <- function(data,
-                       visual = c("ridge", "halfeye"),
+                       visual = c("ridge", "halfeye", "point interval"),
                        estimate = c("amce", "mm")) {
+
 
   # amce ridge plot
   if (visual == "ridge" & estimate == "amce") {
@@ -83,7 +84,7 @@ cjbae_plot <- function(data,
             axis.title.y = element_blank())
   }
 
-  # mm ridge plot
+  # mm halfeye plot
   else if (visual == "halfeye" & estimate == "mm") {
     ggplot2::ggplot(data,
                     aes(x = estimate,
@@ -97,4 +98,36 @@ cjbae_plot <- function(data,
             panel.border = element_blank(),
             axis.title.y = element_blank())
   }
+
+  # amce interval plot
+  else if (visual == "point interval" & estimate == "amce") {
+    ggplot2::ggplot(data,
+                    aes(x = estimate,
+                        y = level,
+                        fill = feature,
+                        colour = feature)) +
+      tidybayes::stat_pointintervalh() +
+      geom_vline(xintercept = 0, linetype = "dashed") +
+      xlab("Average Marginal Component Effect") +
+      ylab("Feature level") +
+      theme(axis.line = element_line(colour = "black"),
+            panel.border = element_blank(),
+            axis.title.y = element_blank())
+  }
+
+  # mm interval plot
+  else if (visual == "point interval" & estimate == "mm") {
+    ggplot2::ggplot(data,
+                    aes(x = estimate,
+                        y = level,
+                        colour = feature)) +
+      tidybayes::stat_pointintervalh() +
+      geom_vline(xintercept = 0.5, linetype = "dashed") +
+      xlab("Marginal Mean") +
+      ylab("Feature level") +
+      theme(axis.line = element_line(colour = "black"),
+            panel.border = element_blank(),
+            axis.title.y = element_blank())
+  }
+
 }
