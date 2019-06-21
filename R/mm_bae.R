@@ -67,4 +67,10 @@ mm_bae <- function(baemces,
   to_merge <- data.frame(feature = unique(marginal_mean$feature),
                          level = sprintf("(%s)", unique(marginal_mean$feature)))
   marginal_mean <- merge(marginal_mean, to_merge, all = TRUE)
+
+  # get rid of pointless columns
+  marginal_mean <- marginal_mean %>%
+    dplyr::select(-dplyr::starts_with("."))
 }
+
+
