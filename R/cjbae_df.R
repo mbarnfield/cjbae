@@ -30,7 +30,7 @@
 #' # if the iter argument in cjbae() is altered from the default, the same is required in cjbae_df()
 #' bae <- cjbae(data = taxes, formula = f, id = ID, estimate = "mm", prior = prior, save_amce = TRUE, iter = 1e3)
 #' cjbae_df(taxes, f, baerms, iter = 1e3)
-
+#'
 cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
 
   baemces <- posterior_samples(brmsfit, "^b") %>%
@@ -38,8 +38,8 @@ cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
     dplyr::select(-"b_Intercept") %>%
     reshape2::melt() %>%
     dplyr::mutate(variable = gsub(".*_",
-                           "",
-                           variable)) %>%
+                                  "",
+                                  variable)) %>%
     dplyr::rename(estimate = value) %>%
     dplyr::rename(level = variable)
 
@@ -57,5 +57,53 @@ cjbae_df <- function(data, formula, brmsfit, iter = 2e3) {
   # repeat each predictor the corresponding number of times
   baemces$feature <- rep(predictors, times = reps)
 
-  return(baemces)
+  # create reference category
+  # function to create dataframe of only predictor variables
+  predictor_df <- function(x, f) {
+    pred <- all.vars(stats::update(formula, 0 ~ .))
+    pred_df <- dplyr::select(data, dplyr::one_of(pred))
+  }
+
+  pred_df <- predictor_df(data, formula)
+
+  # find base level of every predictor (used as reference category in model)
+  ref <- vector("character", ncol(pred_df))
+  for (i in seq_along(pred_df)){
+    ref[i] <- levels(pred_df[,i])[1]
+  }
+
+  # dataframe of reference categories with estimate of 0, bind to original data
+  baemces <- data.frame(
+    level = ref,
+    feature = colnames(pred_df),
+    estimate = rep(0, length(ref))
+  ) %>%
+    dplyr::mutate(level = gsub(".*_",
+                               "",
+                               level)) %>%
+    rbind(baemces) %>%
+    dplyr::arrange(feature, level)
+
+  # make sure no character vars
+  baemces[sapply(baemces, is.character)] <-
+    lapply(baemces[sapply(baemces, is.character)], as.factor)
+
+  # create feature headers for plot
+  make_feature_headers <- function(x, fmt = "(%s)") {
+    feature_levels <- rev(split(x$level, x$feature))
+    for (i in seq_along(feature_levels)) {
+      feature_levels[[i]] <- levels(x$level)[match(feature_levels[[i]], levels(x$level))]
+      feature_levels[[i]] <- c(feature_levels[[i]], sprintf(fmt, names(feature_levels)[i]))
+    }
+    factor(as.character(x$level), levels = unique(unname(unlist(feature_levels))))
+  }
+
+  baemces$level <- make_feature_headers(baemces, fmt = "(%s)")
+  to_merge <- data.frame(feature = unique(baemces$feature),
+                         level = sprintf("(%s)", unique(baemces$feature)))
+  baemces <- merge(baemces, to_merge, all = TRUE)
+
+  # sort for sensible plotting
+  baemces <- baemces %>% dplyr::arrange(feature, level)
+
 }

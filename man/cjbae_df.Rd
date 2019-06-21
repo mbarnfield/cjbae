@@ -44,4 +44,5 @@ cjbae_df(taxes, f, baerms)
 # if the iter argument in cjbae() is altered from the default, the same is required in cjbae_df()
 bae <- cjbae(data = taxes, formula = f, id = ID, estimate = "mm", prior = prior, save_amce = TRUE, iter = 1e3)
 cjbae_df(taxes, f, baerms, iter = 1e3)
+
 }

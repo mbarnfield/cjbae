@@ -1,4 +1,4 @@
-#' @rdname cjbae
+#' @rdname cjbae_update
 #' @title Bayesian inference for conjoint experiments
 #' @description Calculate Bayesian AMCEs and marginal means for conjoint experiments
 #' @param data A tidy conjoint dataset
@@ -99,28 +99,7 @@ cjbae <-
         refresh = refresh
       )
 
-      baemces <- posterior_samples(baemces, "^b") %>%
-        data.frame() %>%
-        dplyr::select(-"b_Intercept") %>%
-        reshape2::melt() %>%
-        dplyr::mutate(variable = gsub(".*_",
-                               "",
-                               variable)) %>%
-        dplyr::rename(estimate = value) %>%
-        dplyr::rename(level = variable)
-
-      # create feature variable - first have to work out no. of unique levels per feature
-      features_df <- dplyr::select(data, one_of(predictors))
-      lengths <- vector("double", ncol(features_df))
-      for (i in seq_along(features_df)) {
-        lengths[[i]] <- length(unique(features_df[[i]]))
-      }
-      # -1 because of reference cats, then times by 2000 (no. of samples per level)
-      reps <- (lengths-1)*iter
-      # repeat each predictor the corresponding number of times
-      baemces$feature <- rep(predictors, times = reps)
-
-      return(baemces)
+      baemces <- cjbae_df(data, formula, baemces)
     }
 
 
@@ -136,28 +115,8 @@ cjbae <-
         refresh = refresh
       )
 
-      baemces <- posterior_samples(baemces, "^b") %>%
-        data.frame() %>%
-        dplyr::select(-"b_Intercept") %>%
-        reshape2::melt() %>%
-        mutate(variable = gsub(".*_",
-                               "",
-                               variable)) %>%
-        dplyr::rename(estimate = value) %>%
-        dplyr::rename(level = variable)
+      baemces <- cjbae_df(data, formula, baemces)
 
-      # create feature variable - first have to work out no. of unique levels per feature
-      features_df <- dplyr::select(data, one_of(predictors))
-      lengths <- vector("double", ncol(features_df))
-      for (i in seq_along(features_df)) {
-        lengths[[i]] <- length(unique(features_df[[i]]))
-      }
-      # -1 because of reference cats, then times by iter (no. of samples per level)
-      reps <- (lengths-1)*iter
-      # repeat each predictor the corresponding number of times
-      baemces$feature <- rep(predictors, times = reps)
-
-      return(baemces)
     }
 
 
