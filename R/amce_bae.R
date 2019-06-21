@@ -89,28 +89,7 @@ amce_bae <- function(data,
       refresh = refresh
     )
 
-    baemces <- posterior_samples(baemces, "^b") %>%
-      data.frame() %>%
-      dplyr::select(-"b_Intercept") %>%
-      reshape2::melt() %>%
-      dplyr::mutate(variable = gsub(".*_",
-                             "",
-                             variable)) %>%
-      dplyr::rename(estimate = value) %>%
-      dplyr::rename(level = variable)
-
-    # create feature variable - first have to work out no. of unique levels per feature
-    features_df <- dplyr::select(data, dplyr::one_of(predictors))
-    lengths <- vector("double", ncol(features_df))
-    for (i in seq_along(features_df)) {
-      lengths[[i]] <- length(unique(features_df[[i]]))
-    }
-    # -1 because of reference cats, then times by 2000 (no. of samples per level)
-    reps <- (lengths-1)*iter
-    # repeat each predictor the corresponding number of times
-    baemces$feature <- rep(predictors, times = reps)
-
-    return(baemces)
+    baemces <- cjbae_df(data, formula, baemces)
   }
 
 
@@ -126,27 +105,6 @@ amce_bae <- function(data,
       refresh = refresh
     )
 
-    baemces <- posterior_samples(baemces, "^b") %>%
-      data.frame() %>%
-      dplyr::select(-"b_Intercept") %>%
-      reshape2::melt() %>%
-      dplyr::mutate(variable = gsub(".*_",
-                             "",
-                             variable)) %>%
-      dplyr::rename(estimate = value) %>%
-      dplyr::rename(level = variable)
-
-    # create feature variable - first have to work out no. of unique levels per feature
-    features_df <- dplyr::select(data, dplyr::one_of(predictors))
-    lengths <- vector("double", ncol(features_df))
-    for (i in seq_along(features_df)) {
-      lengths[[i]] <- length(unique(features_df[[i]]))
-    }
-    # -1 because of reference cats, then times by iter (no. of samples per level)
-    reps <- (lengths-1)*iter
-    # repeat each predictor the corresponding number of times
-    baemces$feature <- rep(predictors, times = reps)
-
-    return(baemces)
+    baemces <- cjbae_df(data, formula, baemces)
   }
 }

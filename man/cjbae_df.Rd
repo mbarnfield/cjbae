@@ -22,7 +22,7 @@ A dataframe of AMCEs. These take the form of samples from the posterior probabil
 Generate a tidy dataframe of Bayesian AMCEs from brmsfit
 }
 \details{
-\code{cjbae_df()} takes an AMCE brmsfit object and creates a dataframe of AMCE parameter estimates. The other arguments are needed in addition to the brmsfit argument in order to create the feature variable in the output.
+\code{cjbae_df()} takes an AMCE brmsfit object and creates a dataframe of AMCE parameter estimates. The other arguments are needed in addition to the brmsfit argument in order to create the feature variable in the output. Also used as a utility function in other functions.
 }
 \examples{
 #' #' #load example dataset from {cregg} (Leeper 2019)

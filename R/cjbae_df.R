@@ -6,7 +6,7 @@
 #' @param brmsfit The brmsfit object to convert.
 #' @param iter The number of iterations in the brms model. Defaults to 2000, the same as the default in amce_bae and cjbae.
 #' @return A dataframe of AMCEs. These take the form of samples from the posterior probability distribution and can be plotted as distributions, rather than point estimates.
-#' @details \code{cjbae_df()} takes an AMCE brmsfit object and creates a dataframe of AMCE parameter estimates. The other arguments are needed in addition to the brmsfit argument in order to create the feature variable in the output.
+#' @details \code{cjbae_df()} takes an AMCE brmsfit object and creates a dataframe of AMCE parameter estimates. The other arguments are needed in addition to the brmsfit argument in order to create the feature variable in the output. Also used as a utility function in other functions.
 #' @export
 #' @import tidyverse magrittr reshape2 stats
 #' @importFrom magrittr "%>%"
