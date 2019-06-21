@@ -36,7 +36,7 @@
 
 
 
-cjbae <-
+cjbae_update <-
   function(data,
            formula,
            id,
